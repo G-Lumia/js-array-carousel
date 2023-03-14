@@ -11,19 +11,28 @@ body{
     background: linear-gradient(180deg, rgba(0,125,255,1) 0%, rgba(255,255,255,1) 100%);
 }
 
+/* l'intero carosello */
 .slider{
-    width: 1250px;
-    height: 1000px;
+    width: 750px;
+    height: 500px;
     background-color: black;
-    position: relative
 }
 
+/* sezione dedicata all'immagine selezionata */
+
+.slides{
+    width:80%;
+    height: 100%;
+}
+
+/* le propietà delle varie slide all'interno di slides */
 .slide{
     width:100%;
     height: 100%;
     display:none;
 }
 
+/* le propietà dell'immagine contenuta in slide */
 .slide img{
     width:100%;
     height: 100%;
@@ -32,16 +41,59 @@ body{
     object-position: right;
 }
 
+/* le propietà di slide quando diventa attiva, tramite lo scorrimento del vettore */
 .slide.active{
     display:block;
 }
 
+/* sezione dedicata alle thumbnail */
+.thumbs{
+    width:20%;
+    height: 100%;
+    position:relative;
+}
+
+/* le propietà delle varie thumb all'interno di thumbs */
+.thumb{
+    width:100%;
+    height: 20%;
+    background: black;
+}
+
+.thumb-nav{
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 10000;
+}
+
+/* le propietà dell'immagine contenuta in thumb */
+.thumb img{
+    height: 100%;
+    width: 100%;
+    display:block;
+    object-fit: cover;
+    object-position: right;
+    filter: brightness(0.5);
+    transition: 0.5s;
+}
+
+/* le propietà di thumb quando diventa attiva, tramite lo scorrimento del vettore */
+.thumb.active{
+    border: 4px solid white;
+}
+
+.thumb.active img{
+    filter: brightness(1);
+}
+
+
 button{
     color:white;
-    background-color: transparent;
+    background-color: black;
+    margin: 5px 0 5px 0;
     border: none;
-    position:absolute;
-    right:50%;
 }
 
 .up{
