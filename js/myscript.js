@@ -21,7 +21,7 @@ let slides = " ";
 for ( let i=0; i<images.length; i++)
 {
     slides += ` <div class="slide">
-                    <img  src="${images[i]}" alt="img${i + 1}">
+                    <img src="${images[i]}" alt="img${i + 1}">
               </div> ` 
 }
 

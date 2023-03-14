@@ -1,0 +1,53 @@
+#wrapper{
+    width:100%;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background: rgb(0,125,255);
+    background: linear-gradient(180deg, rgba(0,125,255,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.slider{
+    width: 1250px;
+    height: 1000px;
+    background-color: black;
+    position: relative
+}
+
+.slide{
+    width:100%;
+    height: 100%;
+    display:none;
+}
+
+.slide img{
+    width:100%;
+    height: 100%;
+    display:block;
+    object-fit: cover;
+    object-position: right;
+}
+
+.slide.active{
+    display:block;
+}
+
+button{
+    color:white;
+    background-color: transparent;
+    border: none;
+    position:absolute;
+    right:50%;
+}
+
+.up{
+    top: 0;
+}
+
+.down{
+    bottom: 0;
+}
