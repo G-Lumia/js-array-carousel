@@ -5,48 +5,74 @@
 */
 
 // creazione del vettore di immagini
-
-const images = [
-    "img/01.webp",
-    "img/02.webp",
-    "img/03.webp",
-    "img/04.webp",
-    "img/05.webp"
-];
-
 const slider = document.querySelector(".slides");
 const thumber = document.querySelector(".thumbs");
 
-let currentIndex = 0;
-let slides = " ";
-let thumbs = " ";
-for ( let i=0; i<images.length; i++)
+const images = [
 {
-    slides += ` <div class="slide">
-                    <img src="${images[i]}" alt="img${i + 1}">
-               </div> ` ;
+    img : "./img/01.webp",
+    text : "Spiderman"
+},
+{
+    img : "./img/02.webp",
+    text : "Ratchet & Clank"
+},
+{
+    img : "./img/03.webp",
+    text : "Fortinite"
+},
+{
+    img : "./img/04.webp",
+    text : "Stray"
+},
+{
+    img : "./img/05.webp",
+    text : "Marvel"
+}];
 
-    thumbs +=  ` <div class="thumb">
-                     <img src="${images[i]}" alt="img${i + 1}">
-                </div> ` ;
+let currentIndex = 0;
+
+function createCarousel()
+{
+    images.forEach((game) =>
+    {
+        const slide = document.createElement("img");
+        const text = document.createElement("h2");
+        text.innerText = game.text;
+        slide.src = game.img;
+        slide.classList.add("slide");
+        text.classList.add("caption" , "bg-light" , "text-dark" , "p-3");
+
+        const thumb = document.createElement("img");
+        thumb.src = game.img;
+        thumb.classList.add("thumb");
+        slider.appendChild(slide);
+        slider.appendChild(text);
+        thumber.appendChild(thumb);
+
+        if(images.indexOf(game) === 0)
+        {
+            slide.classList.add("d-block");
+            text.classList.add("d-block");
+        }
+    });
 }
-
-slider.innerHTML += slides;
-thumber.innerHTML += thumbs;
-
-document.querySelectorAll(".slide")[currentIndex].classList.add("active");
-document.querySelectorAll(".thumb")[currentIndex].classList.add("active");
 
 const up = document.querySelector(".up");
 const down = document.querySelector(".down");
-
 up.addEventListener("click" , goDown);
 
 // funzione per scorrere avanti il vettore di immagini
 
 function goUp() {
-    document.querySelectorAll(".slide")[currentIndex].classList.remove("active");
-    document.querySelectorAll(".thumb")[currentIndex].classList.remove("active");
+    const slides = document.querySelectorAll(".slide");
+    const texts = document.querySelectorAll("h2");
+    const thumbs =  document.querySelectorAll(".thumb");
+
+    slides[currentIndex].classList.remove("d-block");
+    texts[currentIndex].classList.remove("d-block");
+    thumbs[currentIndex].classList.remove("active");
+
     if(currentIndex == images.length - 1)
     {
         currentIndex = 0;
@@ -55,8 +81,9 @@ function goUp() {
     {
         currentIndex++;
     }
-    document.querySelectorAll(".slide")[currentIndex].classList.add("active");
-    document.querySelectorAll(".thumb")[currentIndex].classList.add("active");
+    slides[currentIndex].classList.add("d-block");
+    texts[currentIndex].classList.add("d-block");
+    thumbs[currentIndex].classList.add("active");
 }
 
 down.addEventListener("click" , goUp);
@@ -64,8 +91,13 @@ down.addEventListener("click" , goUp);
 // funzione per scorrere indietro il vettore di immagini
 
 function goDown() {
-    document.querySelectorAll(".slide")[currentIndex].classList.remove("active");
-    document.querySelectorAll(".thumb")[currentIndex].classList.remove("active");
+    const slides = document.querySelectorAll(".slide");
+    const texts = document.querySelectorAll("h2");
+    const thumbs =  document.querySelectorAll(".thumb");
+
+    slides[currentIndex].classList.remove("d-block");
+    texts[currentIndex].classList.remove("d-block");
+    thumbs[currentIndex].classList.remove("active");
     if(currentIndex == 0)
     {
         currentIndex = images.length - 1;
@@ -74,16 +106,23 @@ function goDown() {
     {
         currentIndex--;
     }
-    document.querySelectorAll(".slide")[currentIndex].classList.add("active");
-    document.querySelectorAll(".thumb")[currentIndex].classList.add("active");
+    slides[currentIndex].classList.add("d-block");
+    texts[currentIndex].classList.add("d-block");
+    thumbs[currentIndex].classList.add("active");
 }
+
 
 // MILESTONE 1
 // Per prima cosa, proviamo ad aggiungere al nostro carosello un autoplay. quindi il carosello deve cominciare a girare non appena carico la pagina.
 // Si deve fermare se vado col mouse sopra il div che contiene tutto lo slider e
-// ripartire quando vado col mouse fuori del div con lo slider.MILESTONE 2
+// ripartire quando vado col mouse fuori del div con lo slider.
+//MILESTONE 2
 // convertiamo l'array delle immagini in un array di oggetti. Ogni oggetto deve contenere una immagine e un titolo (da visualizzare sopra l'immagine del carosello)MILESTONE 3
 // Cicliamo quindi sull'array di oggetti possibilmente usando un forEach
+
+createCarousel();
+
+let autoplay = setInterval(goUp , 1000);
 
 slider.addEventListener("mouseover", stop);
 slider.addEventListener("mouseout" , play);
