@@ -77,3 +77,23 @@ function goDown() {
     document.querySelectorAll(".slide")[currentIndex].classList.add("active");
     document.querySelectorAll(".thumb")[currentIndex].classList.add("active");
 }
+
+// MILESTONE 1
+// Per prima cosa, proviamo ad aggiungere al nostro carosello un autoplay. quindi il carosello deve cominciare a girare non appena carico la pagina.
+// Si deve fermare se vado col mouse sopra il div che contiene tutto lo slider e
+// ripartire quando vado col mouse fuori del div con lo slider.MILESTONE 2
+// convertiamo l'array delle immagini in un array di oggetti. Ogni oggetto deve contenere una immagine e un titolo (da visualizzare sopra l'immagine del carosello)MILESTONE 3
+// Cicliamo quindi sull'array di oggetti possibilmente usando un forEach
+
+slider.addEventListener("mouseover", stop);
+slider.addEventListener("mouseout" , play);
+
+function play()
+{
+    autoplay = setInterval(goUp , 1000);
+}
+
+function stop()
+{
+    clearInterval(autoplay);
+}
