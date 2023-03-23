@@ -5,8 +5,7 @@
 */
 
 // creazione del vettore di immagini
-const slider = document.querySelector(".slides");
-const thumber = document.querySelector(".thumbs");
+
 
 const images = [
 {
@@ -34,6 +33,8 @@ let currentIndex = 0;
 
 function createCarousel()
 {
+    const slidesCont = document.querySelector(".slides");
+    const thumbsCont = document.querySelector(".thumbs");
     images.forEach((game) =>
     {
         const slide = document.createElement("img");
@@ -46,14 +47,15 @@ function createCarousel()
         const thumb = document.createElement("img");
         thumb.src = game.img;
         thumb.classList.add("thumb");
-        slider.appendChild(slide);
-        slider.appendChild(text);
-        thumber.appendChild(thumb);
+        slidesCont.appendChild(slide);
+        slidesCont.appendChild(text);
+        thumbsCont.appendChild(thumb);
 
         if(images.indexOf(game) === 0)
         {
             slide.classList.add("d-block");
             text.classList.add("d-block");
+            thumb.classList.add("active");
         }
     });
 }
@@ -122,14 +124,14 @@ function goDown() {
 
 createCarousel();
 
-let autoplay = setInterval(goUp , 1000);
-
+let autoplay = setInterval(goUp , 3000);
+const slider = document.querySelector(".slider");
 slider.addEventListener("mouseover", stop);
 slider.addEventListener("mouseout" , play);
 
 function play()
 {
-    autoplay = setInterval(goUp , 1000);
+    autoplay = setInterval(goUp ,3000);
 }
 
 function stop()
